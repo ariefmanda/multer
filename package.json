@@ -23,6 +23,7 @@
     "busboy": "^0.2.11",
     "concat-stream": "^1.5.2",
     "mkdirp": "^0.5.1",
+    "sharp": "^0.24.0",
     "object-assign": "^4.1.1",
     "on-finished": "^2.3.0",
     "type-is": "^1.6.4",
