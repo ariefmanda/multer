@@ -3,6 +3,7 @@ var os = require('os')
 var path = require('path')
 var crypto = require('crypto')
 var mkdirp = require('mkdirp')
+var sharp = require('sharp')
 
 function getFilename (req, file, cb) {
   crypto.pseudoRandomBytes(16, function (err, raw) {
@@ -36,8 +37,9 @@ DiskStorage.prototype._handleFile = function _handleFile (req, file, cb) {
 
       var finalPath = path.join(destination, filename)
       var outStream = fs.createWriteStream(finalPath)
+      var resizer = sharp().resize(500, 500).png()
 
-      file.stream.pipe(outStream)
+      file.stream.pipe(resizer).pipe(outStream)
       outStream.on('error', cb)
       outStream.on('finish', function () {
         cb(null, {
